@@ -28,6 +28,7 @@ const SignIn = () => {
  
  <View className='flex flex-row items-center justify-center'>
   <Image source={icons.google} className='w-5 h-5' resizeMode='contain'/>
+<Text className='text-lg font-rubik-medium text-black-300 ml-4'>Continue with Google</Text>
 </View>
 </TouchableOpacity>
 
