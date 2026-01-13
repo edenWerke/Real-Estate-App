@@ -25,6 +25,7 @@ export const account=new Account(client)
 export async function login(){
     try{
 const redirectUri=Linking.createURL('/')
+
     }catch(error){
         console.error(error);
         return false;
