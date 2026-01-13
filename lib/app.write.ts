@@ -1,4 +1,4 @@
-import { Client } from 'react-native-appwrite';
+import { Account, Avatars, Client } from 'react-native-appwrite';
 
 export const config={
     Platform:'com.eden.restate',
@@ -10,4 +10,12 @@ export const config={
 
 export const client=new Client();
 
-client.setEndpoint(config.endpoint!).setProject(config.projectId!).setPlatform(config.Platform!)
+client
+.setEndpoint(config.endpoint!)
+.setProject(config.projectId!).
+setPlatform(config.Platform!)
+
+
+
+export const avatar=new Avatars(client);
+export const account=new Account(client)
