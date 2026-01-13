@@ -1,4 +1,6 @@
+import * as Linking from 'expo-linking';
 import { Account, Avatars, Client } from 'react-native-appwrite';
+
 
 export const config={
     Platform:'com.eden.restate',
@@ -19,3 +21,13 @@ setPlatform(config.Platform!)
 
 export const avatar=new Avatars(client);
 export const account=new Account(client)
+
+export async function login(){
+    try{
+const redirectUri=Linking.createURL('/')
+    }catch(error){
+        console.error(error);
+        return false;
+    }
+}
+
