@@ -1,6 +1,6 @@
 import * as Linking from 'expo-linking';
-import { Account, Avatars, Client } from 'react-native-appwrite';
-
+import { openAuthSessionAsync } from "expo-web-browser";
+import { Account, Avatars, Client, OAuthProvider } from 'react-native-appwrite';
 
 export const config={
     Platform:'com.eden.restate',
@@ -26,7 +26,14 @@ export async function login(){
     try{
 const redirectUri=Linking.createURL('/')
 
-    }catch(error){
+const response=await account.createOAuth2Token(OAuthProvider.Google,redirectUri)
+    if(!response) throw new Error ('Faild to login')
+    const browserResult=await openAuthSessionAsync(
+response.toString(),
+redirectUri
+    )
+
+}catch(error){
         console.error(error);
         return false;
     }
