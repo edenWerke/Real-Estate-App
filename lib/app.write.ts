@@ -32,6 +32,13 @@ const response=await account.createOAuth2Token(OAuthProvider.Google,redirectUri)
 response.toString(),
 redirectUri
     )
+if (browserResult.type!=='success')throw new Error('Faild to login')
+const url=new URL(browserResult.url)
+const secret=url.searchParams.get('secret')?.toString();
+const userId=url.searchParams.get('userId')?.toString()
+
+if(!secret || !userId) throw new Error ('Faild to Login')
+
 
 }catch(error){
         console.error(error);
