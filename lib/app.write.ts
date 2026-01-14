@@ -37,9 +37,10 @@ const url=new URL(browserResult.url)
 const secret=url.searchParams.get('secret')?.toString();
 const userId=url.searchParams.get('userId')?.toString()
 
-if(!secret || !userId) throw new Error ('Faild to Login')
-
-
+if(!secret || !userId) throw new Error ('Faild to Login');
+const session=await account.createSession(userId,secret);
+if(!session) throw new Error ('Faild to create a session');
+return true
 }catch(error){
         console.error(error);
         return false;
