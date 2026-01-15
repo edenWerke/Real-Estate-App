@@ -57,3 +57,4 @@ export const useGlobalContext = (): GlobalContextType => {
 };
 
 export default GlobalProvider;
+//i will add it tmrw because i lost concentration today
