@@ -1,7 +1,7 @@
 import icons from '@/constants/icons'
 import images from '@/constants/images'
 import React from 'react'
-import { Image, ScrollView, Text, View } from 'react-native'
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Profile = () => {
@@ -21,8 +21,17 @@ const Profile = () => {
       <View className='flex-row justify-center flex mt-5'>
         <View className='flex flex-col items-center relative mt-5'>
 
-          <Image source={images.avatar}/>
+          <Image source={images.avatar} className='size-44 relative rounded-full'/>
+        
+        <TouchableOpacity className='absoulte bottom-11 right-2'>
+          <Image source={icons.edit} className='size-9'/>
+        </TouchableOpacity>
+        <Text className='text-2xl font-rubik-bold'>John | Js Mastery</Text>
         </View>
+
+      </View>
+      <View className='flex flex-col mt-10'>
+
       </View>
       </ScrollView>
     </SafeAreaView>
