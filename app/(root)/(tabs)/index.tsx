@@ -1,12 +1,17 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View } from "react-native";
 
-const Home = () => {
+export default function Index() {
   return (
-    <View>
-      <Text>Home</Text>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text className=" font-rubik-light text-3xl color-pink-800  my-10">Welcome to realstatee</Text>
+      
+     
     </View>
-  )
+  );
 }
-
-export default Home
