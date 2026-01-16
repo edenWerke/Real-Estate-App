@@ -4,6 +4,16 @@ import React from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+
+const SettingsItem=({icon,title,onPress,textStyle,s})=>(
+  <TouchableOpacity>
+    <View>
+      <Image source={icon}/>
+      <Text>{title}</Text>
+    </View>
+  </TouchableOpacity>
+)
+
 const Profile = () => {
   const handleLogout=async()=>{}
   return (
