@@ -7,8 +7,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 interface SettingItemProps{
   icon:any;
   title:string;
-  onPress:()=>void;
-  textStyle?:any;
+  onPress?:()=>void;
+  textStyle?:string;
 showArrow?:boolean
 }
 
@@ -48,6 +48,8 @@ const Profile = () => {
 
       </View>
       <View className='flex flex-col mt-10'>
+        <SettingsItem icon={icons.calendar} title=' My Bookings' />
+        <SettingsItem icon={icons.wallet} title='Payments'  />
 
       </View>
       </ScrollView>
