@@ -4,8 +4,15 @@ import React from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+interface SettingItemProps{
+  icon:any;
+  title:string;
+  onPress:()=>void;
+  textStyle?:any;
+showArrow?:boolean
+}
 
-const SettingsItem=({icon,title,onPress,textStyle,s})=>(
+const SettingsItem=({icon,title,onPress,textStyle,showArrow=true}:SettingItemProps )=>(
   <TouchableOpacity>
     <View>
       <Image source={icon}/>
