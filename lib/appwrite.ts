@@ -1,13 +1,13 @@
 import * as Linking from "expo-linking";
 import { openAuthSessionAsync } from "expo-web-browser";
 import {
-    Account,
-    Avatars,
-    Client,
-    Databases,
-    OAuthProvider,
-    Query,
-    Storage
+  Account,
+  Avatars,
+  Client,
+  Databases,
+  OAuthProvider,
+  Query,
+  Storage
 } from "react-native-appwrite";
 
 export const config = {
@@ -80,16 +80,17 @@ export async function logout() {
 export async function getCurrentUser() {
   try {
     const result = await account.get();
-    if (result.$id) {
-      const userAvatar = avatar.getInitials(result.name);
 
-      return {
-        ...result,
-        avatar: userAvatar.toString(),
-      };
-    }
+    if (!result.$id) return null;
 
-    return null;
+    const avatarUrl = `${config.endpoint}/avatars/initials?name=${encodeURIComponent(
+      result.name
+    )}&project=${config.projectId}`;
+
+    return {
+      ...result,
+      avatar: avatarUrl,
+    };
   } catch (error) {
     console.log(error);
     return null;
