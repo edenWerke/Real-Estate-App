@@ -1,3 +1,4 @@
+import Search from "@/components/search";
 import icons from "@/constants/icons";
 import images from "@/constants/images";
 import { Image, Text, View } from "react-native";
@@ -24,6 +25,7 @@ export default function Index() {
      </View >
       
      </View>
+     <Search/>
     </SafeAreaView>
   );
 }
