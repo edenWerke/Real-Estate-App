@@ -36,9 +36,9 @@ export default function Index() {
     
     </View>
      </View>
-     </View>
      <FeaturedCard/>
      <Card/>
+     </View>
     </SafeAreaView>
   );
 }
