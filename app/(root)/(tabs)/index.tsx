@@ -1,3 +1,4 @@
+import { Card, FeaturedCard } from "@/components/Cards";
 import Search from "@/components/search";
 import icons from "@/constants/icons";
 import images from "@/constants/images";
@@ -36,6 +37,8 @@ export default function Index() {
     </View>
      </View>
      </View>
+     <FeaturedCard/>
+     <Card/>
     </SafeAreaView>
   );
 }
