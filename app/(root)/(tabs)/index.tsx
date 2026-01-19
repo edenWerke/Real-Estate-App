@@ -24,7 +24,6 @@ export default function Index() {
      
      </View >
       
-     </View>
      <Search/>
      <View className="my-5 ">
       <View className="flex flex-row items-center justify-between">
@@ -35,6 +34,7 @@ export default function Index() {
     </TouchableOpacity>
     
     </View>
+     </View>
      </View>
     </SafeAreaView>
   );
