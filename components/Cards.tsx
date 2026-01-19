@@ -32,10 +32,24 @@ export const FeaturedCard = ({onPress}:Props) => {
   )
 }
 
-export const Card=()=>{
+export const Card=({onPress}:Props)=>{
     return(
-        <View>
-            <Text>Cards</Text>
-        </View>
+      <TouchableOpacity onPress={onPress} className='flex-1 w-full mt-4 px-3 py-4 rounded-lg bg-white shadow-lg shadow-black-100/70 relative'>
+        <View className='flex flex-row px-2 items-center  absolute  top-5 right-5 bg-white/90 rounded-full z-50'>
+    <Image source={icons.star} className='size-2.5'/>
+    <Text className='text-xs font-rubik-bold text-primary ml-0.5'>4.4</Text>
+  </View>
+  <Image source={images.newYork} className='w-full h-40 rounded-lg'/>
+  <View className='flex flex-col mt-2'>
+    <Text className='text-base font-rubik-bold text-black-300'  >Cozy Studio</Text>
+    <Text className='text-base font-rubik text-gray-200' >Dagm Amsal adiHawsi</Text>
+  <View className='flex flex-row items-center justify-between w-full'>
+    <Text className='text-xl font-rubik-extrabold text-white'>$1,200,000</Text>
+  
+  <Image source={icons.heart} className='size-5' />
+  </View>
+  
+  </View>
+      </TouchableOpacity>
     )
 }
