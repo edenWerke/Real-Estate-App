@@ -31,7 +31,7 @@ export const FeaturedCard = ({onPress}:Props) => {
   </TouchableOpacity>
   )
 }
-
+// i will commit tmrw
 export const Card=({onPress}:Props)=>{
     return(
       <TouchableOpacity onPress={onPress} className='flex-1 w-full mt-4 px-3 py-4 rounded-lg bg-white shadow-lg shadow-black-100/70 relative'>
