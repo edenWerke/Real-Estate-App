@@ -24,7 +24,8 @@ const Filters = () => {
         <TouchableOpacity
           key={index}
           onPress={() => handleCategory(item.title)}
-        >
+      className='flex flex-col items-start mr-4 px-4 py-2 rounded-full
+ '  >
           <Text>{item.title}</Text>
         </TouchableOpacity>
       ))}
