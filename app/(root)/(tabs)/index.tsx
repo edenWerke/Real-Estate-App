@@ -3,7 +3,7 @@ import Filters from "@/components/Filters";
 import Search from "@/components/search";
 import icons from "@/constants/icons";
 import images from "@/constants/images";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
@@ -11,7 +11,15 @@ export default function Index() {
     <SafeAreaView
      
     >
-      <View className="px-5">
+      <FlatList
+      numColumns={2}
+      data={[1,2,3,4]}
+      renderItem={({item})=><Card/>}
+      contentContainerClassName="pb-32"
+      columnWrapperClassName="flex gap-5 px-5"
+      showsVerticalScrollIndicator={false}
+      keyExtractor={(item)=>item.toString()}
+    ListHeaderComponent={<View className="px-5">
     <View className="flex flex-row items-center justify-between mt-5">
      <View className="flex flex-row items-center">
       <Image source={images.avatar} className="size-12 rounded-full" />
@@ -36,11 +44,13 @@ export default function Index() {
     </TouchableOpacity>
     
     </View>
-    <View className="flex flex-row gap-5 mt-5">
-      <FeaturedCard/>
-      <FeaturedCard/>
-      <FeaturedCard/>
-    </View>
+    <FlatList data={[1,2,3]} renderItem={({item})=><FeaturedCard/>}
+    keyExtractor={(item)=>item.toString()}
+    showsHorizontalScrollIndicator={false}
+    horizontal
+    bounces={false}
+    contentContainerClassName="flex gap-5 mt-5"
+    />
      </View>
    <View className="flex flex-row items-center justify-between">
       <Text className="text-xl font-rubik-bold text-black-300">Our Recommendation</Text>
@@ -51,11 +61,10 @@ export default function Index() {
     
     </View>
     <Filters/>
-    <View className="flex flex-row gap-5 mt-5">
-     <Card/>
-     <Card/>
-     </View>
-     </View>
+   
+     </View>}
+      />
+      
     </SafeAreaView>
   );
 }
