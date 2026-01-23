@@ -2,12 +2,46 @@ import { Card, FeaturedCard } from "@/components/Cards";
 import Filters from "@/components/Filters";
 import Search from "@/components/search";
 import icons from "@/constants/icons";
+import { getLatestProperties, getProperties } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
+import { useAppwrite } from "@/lib/useAppwrite";
+
+import { useLocalSearchParams } from "expo-router";
+import { useEffect } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
-  const {user}=useGlobalContext()
+  const {user}=useGlobalContext();
+  const params=useLocalSearchParams<{query?:string;filter?:string}>()
+  
+  const {
+  data: latestProperties,
+  loading: latestPropertiesLoading,
+} = useAppwrite({ fn: getLatestProperties });
+
+const {
+  data: properties,
+  loading,
+  refetch,
+} = useAppwrite({
+  fn: getProperties,
+  params: {
+    filter: params.filter!,
+    query: params.query!,
+    limit: 6,
+  },
+  skip: true,
+});
+
+useEffect(() => {
+  refetch({
+    filter: params.filter!,
+    query: params.query!,
+    limit: 6,
+  });
+}, [params.filter, params.query]);
+
   return (
     <SafeAreaView
      
@@ -15,7 +49,7 @@ export default function Index() {
       {/* <Button title="seed" onPress={seed}/> */}
       <FlatList
       numColumns={2}
-      data={[1,2,3,4]}
+      data={properties}
       renderItem={({item})=><Card/>}
       contentContainerClassName="pb-32"
       columnWrapperClassName="flex gap-5 px-5"
@@ -46,7 +80,7 @@ export default function Index() {
     </TouchableOpacity>
     
     </View>
-    <FlatList data={[5,6,7]} renderItem={({item})=><FeaturedCard/>}
+    <FlatList data={latestProperties} renderItem={({item})=><FeaturedCard/>}
     keyExtractor={(item)=>item.toString()}
     showsHorizontalScrollIndicator={false}
     horizontal
