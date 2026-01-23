@@ -1,5 +1,6 @@
 import { Card, FeaturedCard } from "@/components/Cards";
 import Filters from "@/components/Filters";
+import NoResult from "@/components/NoResult";
 import Search from "@/components/search";
 import icons from "@/constants/icons";
 import { getLatestProperties, getProperties } from "@/lib/appwrite";
@@ -8,7 +9,7 @@ import { useAppwrite } from "@/lib/useAppwrite";
 
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
@@ -42,7 +43,7 @@ export default function Index() {
     <SafeAreaView className="flex-1 bg-white">
       <FlatList
         numColumns={2}
-        data={properties}
+        data={[]}
         renderItem={({ item }) => {
           console.log("Property Item:", item); // <-- log for properties
           return <Card item={item} onPress={() => handleCardPress(item.$id)} />;
@@ -51,6 +52,7 @@ export default function Index() {
         contentContainerClassName="pb-32"
         columnWrapperClassName="flex gap-5 px-5"
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={loading?(<ActivityIndicator size='large' className='tex-primary-300 mt-5'/>):<NoResult/>}
         ListHeaderComponent={
           <View className="px-5">
             {/* Header */}
@@ -88,23 +90,25 @@ export default function Index() {
                 </TouchableOpacity>
               </View>
 
-              <FlatList
-                data={latestProperties}
-                renderItem={({ item }) => {
-                  console.log("Featured Property:", item); // <-- log for featured
-                  return (
+              {latestPropertiesLoading ? (
+                <ActivityIndicator size="large" className="text-primary-300" />
+              ) : !latestProperties || latestProperties.length === 0 ? (
+                <NoResult />
+              ) : (
+                <FlatList
+                  data={[]}
+                  renderItem={({ item }) => (
                     <FeaturedCard
                       item={item}
                       onPress={() => handleCardPress(item.$id)}
                     />
-                  );
-                }}
-                keyExtractor={(item) => item.$id} // ✅ unique key
-                showsHorizontalScrollIndicator={false}
-                horizontal
-                bounces={false}
-                contentContainerClassName="flex gap-5 mt-5"
-              />
+                  )}
+                  keyExtractor={(item) => item.$id}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerClassName="flex gap-5 mt-5"
+                />
+              )}
             </View>
 
             {/* Recommendations Section */}
