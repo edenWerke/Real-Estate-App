@@ -12,6 +12,7 @@ export default function Index() {
     <SafeAreaView
      
     >
+      {/* <Button title="seed" onPress={seed}/> */}
       <FlatList
       numColumns={2}
       data={[1,2,3,4]}
@@ -45,7 +46,7 @@ export default function Index() {
     </TouchableOpacity>
     
     </View>
-    <FlatList data={[1,2,3]} renderItem={({item})=><FeaturedCard/>}
+    <FlatList data={[5,6,7]} renderItem={({item})=><FeaturedCard/>}
     keyExtractor={(item)=>item.toString()}
     showsHorizontalScrollIndicator={false}
     horizontal
