@@ -11,7 +11,7 @@ import {
 } from "react-native-appwrite";
 
 export const config = {
-  platform: "com.jsm.restate",
+  platform: "com.eden.restate",
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT,
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
   databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID,
