@@ -43,7 +43,7 @@ export default function Index() {
     <SafeAreaView className="flex-1 bg-white">
       <FlatList
         numColumns={2}
-        data={[]}
+        data={properties}
         renderItem={({ item }) => {
           console.log("Property Item:", item); // <-- log for properties
           return <Card item={item} onPress={() => handleCardPress(item.$id)} />;
@@ -96,7 +96,7 @@ export default function Index() {
                 <NoResult />
               ) : (
                 <FlatList
-                  data={[]}
+                  data={latestProperties}
                   renderItem={({ item }) => (
                     <FeaturedCard
                       item={item}
