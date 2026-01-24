@@ -48,6 +48,8 @@ const SettingsItem = ({
 const Profile = () => {
   const { user, refetch } = useGlobalContext();
 
+  console.log("USER OBJECT 👉", user);
+  console.log("USER AVATAR 👉", user?.avatar);
   const handleLogout = async () => {
     const result = await logout();
     if (result) {

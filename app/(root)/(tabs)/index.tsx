@@ -45,7 +45,7 @@ export default function Index() {
         numColumns={2}
         data={properties}
         renderItem={({ item }) => {
-          console.log("Property Item:", item); // <-- log for properties
+          // console.log("Property Item:", item); // <-- log for properties
           return <Card item={item} onPress={() => handleCardPress(item.$id)} />;
         }}
         keyExtractor={(item) => item.$id} // ✅ use unique ID
