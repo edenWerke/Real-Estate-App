@@ -331,6 +331,16 @@
 //     return null;
 //   }
 // }
+
+
+
+
+
+
+
+
+
+
 import * as Linking from "expo-linking";
 import { openAuthSessionAsync } from "expo-web-browser";
 import {
@@ -410,15 +420,33 @@ export async function logout() {
   }
 }
 
+// Helper: Generate a color from a string (user name)
+function stringToColor(str: string) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  let color = "#";
+  for (let i = 0; i < 3; i++) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += ("00" + value.toString(16)).slice(-2);
+  }
+  return color;
+}
+
 export async function getCurrentUser() {
   try {
     const result = await account.get();
     if (result.$id) {
-      const userAvatar = avatar.getInitials(result.name);
+      const bgColor = stringToColor(result.name); // unique background per user
+
+      const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+        result.name
+      )}&size=128&background=${bgColor.substring(1)}&color=FFFFFF&bold=true&rounded=true&font-size=0.5`;
 
       return {
         ...result,
-        avatar: userAvatar.toString(),
+        avatar: avatarUrl,
       };
     }
 
@@ -428,6 +456,8 @@ export async function getCurrentUser() {
     return null;
   }
 }
+
+
 
 export async function getLatestProperties() {
   try {
