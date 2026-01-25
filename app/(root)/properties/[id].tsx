@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+// we will code tmrwgit 
 
 import Comment from "@/components/Comment";
 import { facilities } from "@/constants/data";
